@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { GET_CREATORS, CREATOR_ERROR } from './types';
 
-const baseUrl =
-    process.env.BASE_URL || 'https://creatorship-iecg.onrender.com/';
+const baseUrl = process.env.BASE_URL || 'https://creatorship-iecg.onrender.com';
 
 // Get List of Creators
 export const getCreators = () => async (dispatch) => {
