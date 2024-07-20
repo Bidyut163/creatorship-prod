@@ -7,10 +7,13 @@ import {
     CLEAR_PROFILE,
 } from './types';
 
+const baseUrl =
+    process.env.BASE_URL || 'https://creatorship-iecg.onrender.com/';
+
 // Get  current users profile
 export const getCurrentProfile = () => async (dispatch) => {
     try {
-        const res = await axios.get('/api/profiles/me');
+        const res = await axios.get(`${baseUrl}/api/profiles/me`);
 
         dispatch({
             type: GET_PROFILE,
@@ -31,7 +34,9 @@ export const getCurrentProfile = () => async (dispatch) => {
 export const getCreatorProfileById = (userId) => async (dispatch) => {
     dispatch({ type: CLEAR_PROFILE });
     try {
-        const res = await axios.get(`/api/profiles/creator/${userId}`);
+        const res = await axios.get(
+            `${baseUrl}/api/profiles/creator/${userId}`
+        );
 
         dispatch({
             type: GET_PROFILE,
@@ -52,7 +57,9 @@ export const getCreatorProfileById = (userId) => async (dispatch) => {
 export const getBusinessProfileById = (userId) => async (dispatch) => {
     dispatch({ type: CLEAR_PROFILE });
     try {
-        const res = await axios.get(`/api/profiles/business/${userId}`);
+        const res = await axios.get(
+            `${baseUrl}/api/profiles/business/${userId}`
+        );
 
         dispatch({
             type: GET_PROFILE,
@@ -81,7 +88,7 @@ export const updateCreatorProfile =
             };
 
             const res = await axios.post(
-                '/api/profiles/creator',
+                `${baseUrl}/api/profiles/creator`,
                 formData,
                 config
             );
@@ -130,7 +137,7 @@ export const updateBusinessProfile =
             };
 
             const res = await axios.post(
-                '/api/profiles/business',
+                `${baseUrl}/api/profiles/business`,
                 formData,
                 config
             );

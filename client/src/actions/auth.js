@@ -11,6 +11,9 @@ import {
     LOGOUT,
 } from './types';
 
+const baseUrl =
+    process.env.BASE_URL || 'https://creatorship-iecg.onrender.com/';
+
 // Load user
 export const loadUser = () => async (dispatch) => {
     if (localStorage.token) {
@@ -18,7 +21,7 @@ export const loadUser = () => async (dispatch) => {
     }
 
     try {
-        const res = await axios.get('/api/auth');
+        const res = await axios.get(`${baseUrl}/api/auth`);
 
         dispatch({
             type: USER_LOADED,
@@ -40,7 +43,11 @@ export const registerCreator = (formData) => async (dispatch) => {
     const body = JSON.stringify(formData);
 
     try {
-        const res = await axios.post('/api/users/creators', body, config);
+        const res = await axios.post(
+            `${baseUrl}/api/users/creators`,
+            body,
+            config
+        );
 
         dispatch({
             type: REGISTER_SUCCESS,
@@ -82,7 +89,11 @@ export const loginCreator = (email, password) => async (dispatch) => {
     });
 
     try {
-        const res = await axios.post('/api/auth/creator', body, config);
+        const res = await axios.post(
+            `${baseUrl}/api/auth/creator`,
+            body,
+            config
+        );
 
         dispatch({
             type: LOGIN_SUCCESS,
@@ -118,7 +129,11 @@ export const registerBusiness = (formData) => async (dispatch) => {
     const body = JSON.stringify(formData);
 
     try {
-        const res = await axios.post('/api/users/businesses', body, config);
+        const res = await axios.post(
+            `${baseUrl}/api/users/businesses`,
+            body,
+            config
+        );
 
         dispatch({
             type: REGISTER_SUCCESS,
@@ -160,7 +175,11 @@ export const loginBusiness = (email, password) => async (dispatch) => {
     });
 
     try {
-        const res = await axios.post('/api/auth/business', body, config);
+        const res = await axios.post(
+            `${baseUrl}/api/auth/business`,
+            body,
+            config
+        );
 
         dispatch({
             type: LOGIN_SUCCESS,
